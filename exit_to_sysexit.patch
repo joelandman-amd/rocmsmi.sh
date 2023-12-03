@@ -1,0 +1,31 @@
+diff -uN a/rocm_smi.py b/rocm_smi.py
+--- a/rocm_smi.py	2023-12-03 13:57:31.685568126 -0500
++++ b/rocm_smi.py	2023-12-03 14:00:18.149574127 -0500
+@@ -3435,10 +3435,10 @@
+         ret_init = rocmsmi.rsmi_init(0)
+         if ret_init != 0:
+             logging.error('ROCm SMI returned %s (the expected value is 0)', ret_init)
+-            exit(ret_init)
++            sys.exit(ret_init)
+     else:
+         logging.error('Driver not initialized (amdgpu not found in modules)')
+-        exit(0)
++        sys.exit(0)
+ 
+ 
+ def isAmdDevice(device):
+@@ -3463,7 +3463,7 @@
+         deviceList = list(range(numberOfDevices.value))
+         return deviceList
+     else:
+-        exit(ret)
++        sys.exit(ret)
+ 
+ 
+ def load(savefilepath, autoRespond):
+@@ -4122,4 +4122,4 @@
+         printLogSpacer(footerString)
+ 
+     rsmi_ret_ok(rocmsmi.rsmi_shut_down())
+-    exit(RETCODE)
++    sys.exit(RETCODE)
